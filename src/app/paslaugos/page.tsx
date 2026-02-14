@@ -294,22 +294,6 @@ function ToothTreatmentIllustration() {
   )
 }
 
-function ImplantIllustration() {
-  return (
-    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
-      <rect x="85" y="120" width="30" height="40" rx="2" />
-      <path d="M85 155l30 0" strokeWidth="3" />
-      <path d="M85 150l30 0" strokeWidth="2" />
-      <path d="M85 145l30 0" strokeWidth="2" />
-      <rect x="90" y="105" width="20" height="15" rx="2" />
-      <path d="M100 50c-15 0-25 10-25 25 0 10 5 18 5 28h40c0-10 5-18 5-28 0-15-10-25-25-25z" />
-      <path d="M85 103v-15l30 0v15" strokeDasharray="2,2" />
-      <circle cx="160" cy="80" r="3" fill="currentColor" />
-      <path d="M155 75l10 0 M155 85l10 0" strokeWidth="1" />
-    </svg>
-  )
-}
-
 function HygieneIllustration() {
   return (
     <svg width="200" height="200" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
@@ -345,38 +329,3 @@ function ProsthetsIllustration() {
     </svg>
   )
 }
-
-function AestheticIllustration() {
-  return (
-    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
-      <path d="M100 50c-25 0-45 20-45 45v30c0 15 12 27 27 27h36c15 0 27-12 27-27V95c0-25-20-45-45-45z" />
-      <path d="M75 95h50" />
-      <rect x="80" y="100" width="8" height="20" rx="1" />
-      <rect x="92" y="100" width="8" height="25" rx="1" />
-      <rect x="104" y="100" width="8" height="25" rx="1" />
-      <rect x="116" y="100" width="8" height="20" rx="1" />
-      <path d="M70 85c5-3 12-5 20-5s15 2 20 5" strokeDasharray="2,2" />
-      <circle cx="85" cy="75" r="2" />
-      <circle cx="115" cy="75" r="2" />
-      <path d="M45 140l15 10 M155 140l-15 10" strokeWidth="1" />
-    </svg>
-  )
-}
-
-function ChildrenIllustration() {
-  return (
-    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
-      <circle cx="100" cy="90" r="40" />
-      <circle cx="85" cy="80" r="3" fill="currentColor" />
-      <circle cx="115" cy="80" r="3" fill="currentColor" />
-      <path d="M90 100c5 8 15 8 20 0" strokeWidth="2" />
-      <path d="M95 108h10v8c0 2-2 4-4 4h-2c-2 0-4-2-4-4v-8z" />
-      <rect x="97" y="114" width="6" height="3" rx="1" />
-      <path d="M80 50c0-8 4-12 10-12s10 4 10 12" />
-      <path d="M100 50c0-8 4-12 10-12s10 4 10 12" />
-      <path d="M60 130l20 15 M140 130l-20 15" strokeWidth="1" strokeDasharray="2,2" />
-      <circle cx="70" cy="140" r="8" strokeDasharray="2,2" />
-      <circle cx="130" cy="140" r="8" strokeDasharray="2,2" />
-    </svg>
-  )
-} 

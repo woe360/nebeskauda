@@ -16,11 +16,11 @@ export default function CookieManagementPage() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved)
-        setCookiePreferences({
-          ...cookiePreferences,
+        setCookiePreferences((prev) => ({
+          ...prev,
           ...parsed,
           necessary: true // Always keep necessary cookies enabled
-        })
+        }))
       } catch (e) {
         console.error('Error loading cookie preferences:', e)
       }

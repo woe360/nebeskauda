@@ -354,46 +354,4 @@ export default function ContactPage() {
       <Footer />
     </div>
   )
-}
-
-// Tooth Icon (Kaunas)
-function ToothIcon() {
-  return (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M24 8c-6 0-10 4-10 10 0 4 2 8 2 12 0 6 2 10 8 10s8-4 8-10c0-4 2-8 2-12 0-6-4-10-10-10z" />
-      <path d="M20 20v8" />
-      <path d="M28 20v8" />
-    </svg>
-  )
-}
-
-// Email Icon
-function EmailIcon() {
-  return (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <rect x="8" y="16" width="32" height="20" rx="2" />
-      <path d="M8 20l16 10 16-10" />
-    </svg>
-  )
-}
-
-// Clock Icon
-function ClockIcon() {
-  return (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <circle cx="24" cy="24" r="16" />
-      <line x1="24" y1="12" x2="24" y2="24" />
-      <line x1="24" y1="24" x2="32" y2="24" />
-    </svg>
-  )
-}
-
-// Map Icon
-function MapIcon() {
-  return (
-    <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.5">
-      <path d="M24 8c-6 0-12 6-12 12 0 8 12 20 12 20s12-12 12-20c0-6-6-12-12-12z" />
-      <circle cx="24" cy="20" r="4" />
-    </svg>
-  )
 } 

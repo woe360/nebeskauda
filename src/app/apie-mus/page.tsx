@@ -1,11 +1,10 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 import Footer from '@/components/Footer'
-import Link from 'next/link'
-import { 
-  Clock, 
-  CheckCircle, 
+import {
+  CheckCircle,
   MapPin,
   Phone,
   Mail
@@ -59,9 +58,11 @@ export default function AboutPage() {
             {/* Left: Image */}
             <div className="order-1 lg:order-2">
               <div className="aspect-[3/3] relative overflow-hidden">
-                <img 
-                  src="/Gabriele-Dile-foto.png" 
+                <Image
+                  src="/Gabriele-Dile-foto.png"
                   alt="Gabrielė Dilė"
+                  width={800}
+                  height={800}
                   className="w-full h-full object-cover"
                 />
               </div>
