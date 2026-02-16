@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import Footer from '@/components/Footer'
 
 export default function ContactPage() {
@@ -174,7 +175,7 @@ export default function ContactPage() {
           
           <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 max-w-2xl mx-auto lg:max-w-none lg:mx-0">
             {/* Name field */}
-            <div>
+            <div className="pt-4">
               <input
                 type="text"
                 name="name"
@@ -187,7 +188,7 @@ export default function ContactPage() {
             </div>
             
             {/* Phone and Email */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
               <div>
                 <input
                   type="tel"
@@ -224,35 +225,46 @@ export default function ContactPage() {
                     : 'Pasirinkite paslaugą'
                   }
                 </span>
-                <svg
-                  className={`w-4 h-4 transition-transform ${isServiceDropdownOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                <span
+                  className={`flex-shrink-0 relative w-5 h-5 opacity-95 brightness-[0.65] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${isServiceDropdownOpen ? 'rotate-180' : ''}`}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
+                  <Image
+                    src="/icons8-expand-arrow-50.png"
+                    alt=""
+                    width={20}
+                    height={20}
+                    className="object-contain"
+                  />
+                </span>
               </div>
               
-              {isServiceDropdownOpen && (
-                <div className="mt-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {serviceOptions.map((service) => (
-                      <label key={service.value} className="flex items-center space-x-3 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          name="services"
-                          value={service.value}
-                          checked={formData.services.includes(service.value)}
-                          onChange={handleChange}
-                          className="w-5 h-5 border border-black/20 rounded"
-                        />
-                        <span className="text-black text-sm">{service.label}</span>
-                      </label>
-                    ))}
+              <div
+                className="grid"
+                style={{
+                  gridTemplateRows: isServiceDropdownOpen ? '1fr' : '0fr',
+                  transition: 'grid-template-rows 0.6s cubic-bezier(0.32, 0.72, 0, 1)',
+                }}
+              >
+                <div className="overflow-hidden min-h-0">
+                  <div className="mt-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {serviceOptions.map((service) => (
+                        <label key={service.value} className="flex items-center space-x-3 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            name="services"
+                            value={service.value}
+                            checked={formData.services.includes(service.value)}
+                            onChange={handleChange}
+                            className="w-5 h-5 border border-black/20 rounded"
+                          />
+                          <span className="text-black text-sm">{service.label}</span>
+                        </label>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
             
             {/* Time Preferences */}
@@ -330,10 +342,17 @@ export default function ContactPage() {
               }
             }
           }}
-          className="w-full lg:w-107 shrink-0 border-t lg:border-t-0 lg:border-l border-black/20 py-8 lg:py-0 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors min-h-[4.5rem] lg:min-h-0"
+          className="group w-full lg:w-107 shrink-0 border-t lg:border-t-0 lg:border-l border-black/20 py-8 lg:py-0 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors min-h-[4.5rem] lg:min-h-0"
         >
-          <span className="text-2xl sm:text-4xl md:text-5xl font-light tracking-wide text-black font-louize-display">
-            Siųsti
+          <span className="sr-only">Siųsti</span>
+          <span className="relative w-16 h-16 sm:w-20 sm:h-20 block">
+            <Image
+              src="/nebeskauda-arrow.svg"
+              alt=""
+              width={64}
+              height={64}
+              className="object-contain w-full h-full opacity-55 transition-opacity duration-200 group-hover:opacity-100"
+            />
           </span>
         </button>
         </div>

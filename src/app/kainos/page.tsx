@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import Image from 'next/image'
 import Footer from '@/components/Footer'
 
 interface PriceItem {
@@ -144,25 +144,32 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Pricing Sections - borders and list same width, connected block */}
-      <section id="services-grid" className="pt-16 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-7xl mx-auto lg:ml-auto lg:mr-0 border-t border-black/20">
+      {/* Pricing Sections - lines start where text starts, touch right edge; content has same side space as Žiūrėti kainas */}
+      <section id="services-grid" className="pt-16 px-4 sm:px-6 lg:pl-10 lg:pr-0 overflow-x-hidden">
+        <div className="w-full border-t border-black/20 lg:ml-[max(0px,calc(100vw-1056px-2.5rem))] lg:w-[min(1056px,calc(100vw-2.5rem))]">
           {pricingSections.map((section, index) => (
             <div key={index} className="border-b border-black/20">
-              <button
-                onClick={() => toggleSection(section.title)}
-                className={`w-full flex items-center justify-between py-6 text-left focus:outline-none hover:italic transition-colors ${openSections.includes(section.title) ? 'italic' : ''}`}
-              >
-                <h3 className="text-lg sm:text-xl font-normal tracking-wide uppercase pr-4">
-                  {section.title}
-                </h3>
-                <div
-                  className={`flex-shrink-0 ${openSections.includes(section.title) ? 'rotate-180' : ''}`}
-                  style={{ transition: 'transform 0.6s cubic-bezier(0.32, 0.72, 0, 1)' }}
+              <div className="px-4 sm:px-6 lg:pl-0 lg:pr-8">
+                <button
+                  onClick={() => toggleSection(section.title)}
+                  className={`w-full flex items-center justify-between py-6 text-left focus:outline-none hover:italic transition-colors ${openSections.includes(section.title) ? 'italic' : ''}`}
                 >
-                  <ChevronDown className="h-4 w-4 text-black/60" />
-                </div>
-              </button>
+                  <h3 className="text-lg sm:text-xl font-normal tracking-wide uppercase pr-4">
+                    {section.title}
+                  </h3>
+                  <div
+                    className={`flex-shrink-0 relative w-5 h-5 opacity-95 brightness-[0.65] transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${openSections.includes(section.title) ? 'rotate-180' : ''}`}
+                  >
+                    <Image
+                      src="/icons8-expand-arrow-50.png"
+                      alt={openSections.includes(section.title) ? 'Sutraukti' : 'Išskleisti'}
+                      width={20}
+                      height={20}
+                      className="object-contain"
+                    />
+                  </div>
+                </button>
+              </div>
               
               <div
                 className="grid"
@@ -172,7 +179,7 @@ export default function PricingPage() {
                 }}
               >
                 <div className="overflow-hidden min-h-0">
-                <div className="pb-6">
+                <div className="px-4 sm:px-6 lg:pl-0 lg:pr-8 pb-6">
                   <div className="space-y-3">
                     {section.items.map((item, itemIndex) => (
                       <div

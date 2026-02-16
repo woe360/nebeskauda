@@ -121,7 +121,7 @@ export default function AboutPage() {
             {/* About Clinic */}
             <div className="border-r border-black/20 p-8 lg:p-12">
               <h2 className="text-4xl md:text-5xl font-light tracking-wide text-gray-900 mb-8 font-louize-display">
-                Apie kliniką
+                Nebeskauda klinika
               </h2>
               <div className="space-y-6 mb-8">
                 <p className="text-sm text-gray-700 leading-relaxed">
