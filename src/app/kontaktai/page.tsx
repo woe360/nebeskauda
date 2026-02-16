@@ -89,58 +89,50 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#E6E4DE] text-black font-sans">
+    <div className="min-h-screen bg-[#E6E4DE] text-black font-sans overflow-x-hidden">
 
-      {/* Main Content */}
-      <div className="flex -mt-2 min-h-[calc(100vh-80px)] border-t border-black/20">
-        {/* Left Side - Main Content */}
-        <div className="flex-1 flex flex-col">
-          {/* Nebeskauda Title */}
-          <div className="flex-1 flex items-center justify-center px-8">
+      {/* Main Content - stacked on mobile, side-by-side on lg */}
+      <div className="flex flex-col lg:flex-row -mt-2 min-h-[calc(100vh-80px)] border-t border-black/20">
+        {/* Left Side - Title */}
+        <div className="flex-1 flex flex-col min-h-[40vh] lg:min-h-0">
+          <div className="flex-1 flex items-center justify-center px-4 sm:px-8 py-12 lg:py-0">
             <h1 className="text-3xl md:text-4xl lg:text-[6rem] font-light leading-none text-center tracking-wider font-louize-display">
               <div>Kontaktai</div>
-              {/* <div>KONTAKTAI</div> */}
-              {/* <div>NEBESKAUDA</div> */}
             </h1>
           </div>
         </div>
 
-        {/* Right Side - Location Info */}
-        <div className="w-107 border-l border-black/20 flex flex-col">
+        {/* Right Side - Location Info (w-107 on desktop, full width on mobile) */}
+        <div className="w-full lg:w-107 border-t lg:border-t-0 lg:border-l border-black/20 flex flex-col shrink-0">
           {/* Kaunas Location & Map */}
           <button 
             onClick={openMap}
-            className="border-b border-black/20 p-8 flex flex-col justify-center items-center gap-4 flex-1 w-full hover:opacity-70 transition-opacity cursor-pointer"
+            className="border-b border-black/20 p-6 sm:p-8 flex flex-col justify-center items-center gap-3 sm:gap-4 min-h-[4rem] lg:min-h-0 lg:flex-1 w-full hover:opacity-70 transition-opacity cursor-pointer text-left sm:text-center"
           >
-            <div className="font-medium text-md">ŠIAURĖS PR. 1, KAUNAS, 49188</div>
-            {/* <span className="text-base font-medium tracking-wider uppercase border-b border-black pb-1">
-              ATIDARYTI ŽEMĖLAPĮ
-            </span> */}
+            <div className="font-medium text-sm sm:text-base lg:text-base">ŠIAURĖS PR. 1, KAUNAS, 49188</div>
             <div className="text-xs text-black/50 font-normal">Atidaryti žemėlapį</div>
           </button>
 
           {/* Email */}
           <a 
             href="mailto:INFO@NEBESKAUDA.COM"
-            className="border-b border-black/20 p-8 flex justify-center items-center gap-4 flex-1 hover:opacity-70 transition-opacity cursor-pointer"
+            className="border-b border-black/20 p-6 sm:p-8 flex justify-center items-center gap-2 min-h-[4rem] lg:min-h-0 lg:flex-1 hover:opacity-70 transition-opacity cursor-pointer"
           >
-            <div className="space-y-2 text-center">
-              <div className="font-medium text-md">INFO@NEBESKAUDA.COM</div>
+            <div className="space-y-1 sm:space-y-2 text-center">
+              <div className="font-medium text-sm sm:text-base lg:text-base break-all">INFO@NEBESKAUDA.COM</div>
               <div className="text-xs text-black/50 font-normal">Atidaryti el. paštą</div>
             </div>
-            {/* <EmailIcon /> */}
           </a>
 
           {/* Phone */}
           <a 
             href="tel:+37062876767"
-            className="border-b border-black/20 p-8 flex justify-center items-center gap-4 flex-1 hover:opacity-70 transition-opacity cursor-pointer"
+            className="border-b border-black/20 p-6 sm:p-8 flex justify-center items-center gap-2 min-h-[4rem] lg:min-h-0 lg:flex-1 hover:opacity-70 transition-opacity cursor-pointer"
           >
-            <div className="space-y-2 text-center">
-              <div className="font-medium text-md">+370 628 76 767</div>
+            <div className="space-y-1 sm:space-y-2 text-center">
+              <div className="font-medium text-sm sm:text-base lg:text-base">+370 62 87 67 67</div>
               <div className="text-xs text-black/50 font-normal">Paskambinti</div>
             </div>
-            {/* <EmailIcon /> */}
           </a>
 
           {/* Working Hours */}
@@ -159,32 +151,28 @@ export default function ContactPage() {
           {/* Registration */}
           <button 
             onClick={scrollToForm}
-            className="p-8 flex justify-center items-center flex-1 w-full hover:opacity-70 transition-opacity cursor-pointer"
+            className="p-6 sm:p-8 lg:flex-1 flex justify-center items-center min-h-[4rem] lg:min-h-0 w-full hover:opacity-70 transition-opacity cursor-pointer"
           >
-             <div className="space-y-2 text-center">
-              <div className="font-medium text-md">REGISTRUOTIS</div>
+             <div className="space-y-1 sm:space-y-2 text-center">
+              <div className="font-medium text-sm sm:text-base lg:text-base">REGISTRUOTIS</div>
               <div className="text-xs text-black/50 font-normal">Atidaryti registracijos formą</div>
             </div>
-            {/* <span className="text-base font-medium tracking-wider uppercase border-b border-black pb-1">
-              REGISTRUOTIS
-            </span>
-            <div className="text-xs text-black/50 font-normal">Spustelėkite, kad atidarytumėte registracijos formą</div> */}
           </button>
           
         </div>
       </div>
 
-      {/* Registration Form Section */}
-      <section id="registration-form" className="border-t border-black/20 h-screen">
-        <div className="flex h-full">
-          <div className="flex-1 px-8 py-4">
-            <div className="text-center pt-25 mb-40">
-                              <h2 className="text-4xl md:text-5xl font-light tracking-wide text-black mb-4 font-louize-display">
-                  Registracija
-                </h2>
+      {/* Registration Form Section - stacked on mobile, side-by-side on desktop */}
+      <section id="registration-form" className="border-t border-black/20 min-h-screen lg:h-screen">
+        <div className="flex flex-col lg:flex-row lg:h-full min-h-0">
+          <div className="flex-1 w-full px-4 sm:px-6 lg:px-8 py-6 lg:py-4 min-w-0">
+            <div className="text-center pt-8 lg:pt-24 mb-12 lg:mb-40">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-wide text-black mb-4 font-louize-display">
+                Registracija
+              </h2>
             </div>
           
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-8 max-w-2xl mx-auto lg:max-w-none lg:mx-0">
             {/* Name field */}
             <div>
               <input
@@ -193,7 +181,7 @@ export default function ContactPage() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Jūsų vardas"
-                className="w-full pb-4 border-b border-black/20 bg-transparent focus:outline-none focus:border-black text-black placeholder-black/50 text-lg"
+                className="w-full pb-4 border-b border-black/20 bg-transparent focus:outline-none focus:border-black text-black placeholder-black text-lg"
                 required
               />
             </div>
@@ -207,7 +195,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="Tel. numeris"
-                  className="w-full pb-4 border-b border-black/20 bg-transparent focus:outline-none focus:border-black text-black placeholder-black/50 text-lg"
+                  className="w-full pb-4 border-b border-black/20 bg-transparent focus:outline-none focus:border-black text-black placeholder-black text-lg"
                   required
                 />
               </div>
@@ -218,7 +206,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="El. paštas"
-                  className="w-full pb-4 border-b border-black/20 bg-transparent focus:outline-none focus:border-black text-black placeholder-black/50 text-lg"
+                  className="w-full pb-4 border-b border-black/20 bg-transparent focus:outline-none focus:border-black text-black placeholder-black text-lg"
                   required
                 />
               </div>
@@ -230,7 +218,7 @@ export default function ContactPage() {
                 onClick={() => setIsServiceDropdownOpen(!isServiceDropdownOpen)}
                 className="w-full pb-4 border-b border-black/20 bg-transparent text-black text-lg cursor-pointer flex justify-between items-center"
               >
-                <span className={formData.services.length > 0 ? 'text-black' : 'text-black/50'}>
+                <span className="text-black">
                   {formData.services.length > 0 
                     ? `Pasirinkta ${formData.services.length} paslaug${formData.services.length === 1 ? 'a' : 'os'}`
                     : 'Pasirinkite paslaugą'
@@ -308,7 +296,7 @@ export default function ContactPage() {
             </div>
             
             {/* Privacy Policy */}
-            <div className="pt-6 pb-25">
+            <div className="pt-6 pb-12 lg:pb-24">
               <label className="flex items-start space-x-3 cursor-pointer">
                 <input
                   type="checkbox"
@@ -330,24 +318,24 @@ export default function ContactPage() {
                    
         </div>
         
-        {/* Right Side - Giant Send Button */}
-        <div 
+        {/* Send Button - full width on mobile, w-107 side panel on desktop (original) */}
+        <button
+          type="button"
           onClick={() => {
             const formElement = document.getElementById('registration-form')
             if (formElement) {
-              // You can add form submission logic here
               const form = formElement.querySelector('form') as HTMLFormElement
               if (form) {
                 form.requestSubmit()
               }
             }
           }}
-          className="w-107 border-l border-black/20 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors"
+          className="w-full lg:w-107 shrink-0 border-t lg:border-t-0 lg:border-l border-black/20 py-8 lg:py-0 flex items-center justify-center cursor-pointer hover:bg-white/10 transition-colors min-h-[4.5rem] lg:min-h-0"
         >
-          <span className="text-4xl md:text-5xl font-light tracking-wide text-black font-louize-display">
+          <span className="text-2xl sm:text-4xl md:text-5xl font-light tracking-wide text-black font-louize-display">
             Siųsti
           </span>
-        </div>
+        </button>
         </div>
       </section>
 

@@ -41,7 +41,7 @@ export default function AboutPage() {
                 element.scrollIntoView({ behavior: 'smooth' })
               }
             }}
-            className="px-6 py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
+            className="px-6 py-3 border-2 rounded-full border-black text-black text-sm font-medium tracking-wide uppercase 
                      hover:bg-black hover:text-white transition-all duration-300 
                      focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
           >

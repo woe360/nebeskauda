@@ -47,11 +47,7 @@ function Navigation() {
           </div>
           <div className="flex-1 border-r border-black/20 px-6 py-4 mt-2 flex justify-center items-center">
             <Link href="/" className="hover:opacity-70 transition-opacity">
-              <div className={`text-2xl font-louize-display tracking-normal leading-none ${
-                isActive('/') 
-                  ? 'border-b border-black' 
-                  : ''
-              }`}>
+              <div className={`text-2xl font-louize-display tracking-normal leading-none `}>
                 NEBESKAUDA
               </div>
             </Link>
@@ -88,12 +84,8 @@ function Navigation() {
       <div className="md:hidden border-b border-black/20">
         <div className="flex items-center justify-between px-6 py-4">
           <Link href="/" className="hover:opacity-70 transition-opacity">
-                          <div className={`text-md font-louize-display tracking-wide leading-none ${
-                isActive('/') 
-                  ? 'border-b border-black' 
-                  : ''
-              }`}>
-              Nebeskauda
+                          <div className={'text-xl font-louize-display tracking-wide leading-none'} >
+              NEBESKAUDA
             </div>
           </Link>
           

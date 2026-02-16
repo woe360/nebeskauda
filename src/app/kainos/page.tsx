@@ -14,28 +14,14 @@ interface PriceSection {
   items: PriceItem[]
 }
 
-interface FAQItem {
-  question: string
-  answer: string
-}
-
 export default function PricingPage() {
   const [openSections, setOpenSections] = useState<string[]>([])
-  const [openFAQ, setOpenFAQ] = useState<string[]>([])
 
   const toggleSection = (sectionTitle: string) => {
     setOpenSections(prev => 
       prev.includes(sectionTitle) 
         ? prev.filter(title => title !== sectionTitle)
         : [...prev, sectionTitle]
-    )
-  }
-
-  const toggleFAQ = (question: string) => {
-    setOpenFAQ(prev => 
-      prev.includes(question) 
-        ? prev.filter(q => q !== question)
-        : [...prev, question]
     )
   }
 
@@ -123,72 +109,25 @@ export default function PricingPage() {
     },
   ]
 
-  const faqItems: FAQItem[] = [
-    {
-      question: "Kaip užsiregistruoti vizitui?",
-      answer: "Registruotis galite skambindami telefonu +370 123 45678, rašydami el. paštu info@nebeskauda.lt arba užpildydami registracijos formą mūsų svetainėje. Taip pat galite atvykti tiesiai į kliniką - mes stengiamės priimti ir be išankstinio susitarimo."
-    },
-    {
-      question: "Ar priimate draudimo kompanijų apmokėjimus?",
-      answer: "Taip, dirbame su visomis pagrindinėmis draudimo kompanijomis Lietuvoje. Prieš procedūrą patikrinkite savo draudimo poliso sąlygas ir informuokite mus apie draudimą registruodamiesi vizitui."
-    },
-    {
-      question: "Ar dantų implantacija skausmingas procesas?",
-      answer: "Implantacijos procedūra atliekama vietinės nejautros metu, todėl skausmo nejausite. Po procedūros gali būti nedidelis nemalonumas, kurį lengvai galima kontroliuoti skausmažudžiais. Visą gydymo procesą kruopščiai kontroliuojame."
-    },
-    {
-      question: "Kiek laiko trunka implanto įgijimas?",
-      answer: "Implanto įgijimas į kaulus trunka 3-6 mėnesius. Šis laikas priklauso nuo jūsų individualių organizmo ypatybių, kaulų kokybės ir implanto vietos. Laikinąją kronelę galime uždėti iš karto arba po kelių savaičių."
-    },
-    {
-      question: "Ar galiu valgyti po dantų gydymo procedūrų?",
-      answer: "Po paprastų gydymo procedūrų valgyti galite iš karto, tačiau rekomenduojame vengti labai karštų ar šaltų maisto produktų 2-3 valandas. Po chirurginių procedūrų duosime detalius nurodymus apie mitybą ir dantų priežiūrą."
-    },
-    {
-      question: "Kaip dažnai reikia atlikti dantų higieną?",
-      answer: "Profesionalią dantų higieną rekomenduojame atlikti kas 6 mėnesius. Žmonėms, turintiems dantų problemų ar gingivitą, gali prireikti dažnesnės higienos - kas 3-4 mėnesius. Individualų grafiką aptarsime konsultacijos metu."
-    },
-    {
-      question: "Ar teikiate garantijas procedūroms?",
-      answer: "Taip, visoms mūsų atliekamoms procedūroms teikiame garantijas. Plomboms garantija 2 metai, kronelėms ir tiltams - 3-5 metai, implantams - 5-10 metų. Garantijos sąlygos priklauso nuo procedūros tipo ir jūsų dantų priežiūros."
-    },
-    {
-      question: "Ar galima atvesti vaikus į kliniką?",
-      answer: "Žinoma! Mūsų klinikoje dirbă vaikų odontologijos specialistė. Priimame vaikus nuo 3 metų amžiaus. Stengiamės sukurti draugišką aplinką mažiesiems pacientams ir padėti jiems nebijojai dantų gydytojo."
-    },
-    {
-      question: "Ką daryti dantų skausmo atveju?",
-      answer: "Stipraus dantų skausmo atveju nedelsiant skambinkite mums telefonu. Turime skubios pagalbos paslaugą darbo dienomis. Iki vizito galite vartoti skausmažudžius ir skauti burną šiltu sūraus vandens tirpalu."
-    },
-    {
-      question: "Kokias mokėjimo galimybes siūlote?",
-      answer: "Priimame grynuosius pinigus, mokėjimo korteles ir banko pavedimus. Brangesnėms procedūroms siūlome išsimokėjimo planus iki 24 mėnesių. Taip pat galime išrašyti sąskaitą įmonėms ir dirbame su draudimo kompanijomis."
-    }
-  ]
-
   return (
-    <div className="min-h-screen bg-[#E6E4DE] text-black font-sans">
-       {/* Hero Section */}
-       <section className="relative h-[92vh] flex items-center justify-center overflow-hidden">
+    <div className="min-h-screen bg-[#E6E4DE] text-black font-sans overflow-x-hidden">
+       {/* Hero Section - stacked on mobile to avoid overlap */}
+       <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0" />
         
         {/* Main Title - Centered */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-4xl mx-auto text-center w-full flex-1 flex items-center justify-center">
           <h1 className="text-3xl md:text-4xl lg:text-[6rem] font-light leading-none text-center tracking-wider font-louize-display">
             <div>Kainos</div>
           </h1>
         </div>
 
-        {/* Bottom Left - Description */}
-        <div className="absolute bottom-16 left-8 z-10 max-w-sm">
-          <p className="text-xs uppercase tracking-wide text-gray-700 leading-relaxed">
+        {/* Bottom: stacked on mobile; on desktop full-width with text left, button right */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto md:max-w-none md:mx-0 flex flex-col md:flex-row md:absolute md:bottom-16 md:left-0 md:right-0 md:justify-between md:items-end md:px-8 gap-6 pb-8 md:pb-0">
+          <p className="text-xs uppercase tracking-wide text-gray-700 leading-relaxed max-w-sm order-2 md:order-1 md:max-w-sm">
             VISAPUSIŠKAS DANTŲ GYDYMAS. ŠIUOLAIKIŠKAS ĮRANGA IR PATYRUSI KOMANDA UŽTIKRINA 
             AUKŠČIAUSIOS KOKYBĖS PASLAUGAS KIEKVIENAM PACIENTUI.
           </p>
-        </div>
-
-        {/* Bottom Right - Register Button */}
-        <div className="absolute bottom-16 right-8 z-10">
           <button
             onClick={() => {
               const element = document.getElementById('services-grid')
@@ -198,45 +137,54 @@ export default function PricingPage() {
             }}
             className="px-6 py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
                      hover:bg-black rounded-full hover:text-white transition-all duration-300 
-                     focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                     focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 w-fit order-1 md:order-2 shrink-0"
           >
-            Žiūrėti paslaugas
+            Žiūrėti kainas
           </button>
         </div>
       </section>
 
-      {/* Pricing Sections - With Space from Navbar */}
-      <section className="pt-16">
-        <div className="ml-auto w-2/3 border-r border-black/20">
+      {/* Pricing Sections - Full width */}
+      <section id="services-grid" className="pt-16">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-black/20">
           {pricingSections.map((section, index) => (
-            <div key={index} className={`border-b border-black/20 ${index === 0 ? 'border-t border-black/20' : ''}`}>
+            <div key={index} className="border-b border-black/20">
               <button
                 onClick={() => toggleSection(section.title)}
-                className="w-full flex items-center justify-between px-8 py-6 text-left focus:outline-none hover:bg-white/20 transition-colors"
+                className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-6 text-left focus:outline-none hover:bg-white/20 transition-colors"
               >
-                <h3 className="text-xl font-medium tracking-wide uppercase">
+                <h3 className="text-lg sm:text-xl font-medium tracking-wide uppercase pr-4">
                   {section.title}
                 </h3>
-                <div className={`transition-transform duration-500 ${openSections.includes(section.title) ? 'rotate-180' : ''}`}>
+                <div className={`transition-transform duration-500 flex-shrink-0 ${openSections.includes(section.title) ? 'rotate-180' : ''}`}>
                   <ChevronDown className="h-4 w-4 text-black/60" />
                 </div>
               </button>
               
               <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
                 openSections.includes(section.title) 
-                  ? 'max-h-screen opacity-100' 
+                  ? 'max-h-[5000px] opacity-100' 
                   : 'max-h-0 opacity-0'
               }`}>
-                <div className="px-8 pb-6">
+                <div className="px-4 sm:px-6 lg:px-8 pb-6">
                   <div className="space-y-3">
                     {section.items.map((item, itemIndex) => (
-                      <div key={itemIndex} className="flex justify-between items-start py-1">
-                        <span className="text-xl text-black/80 pr-4 leading-relaxed">
-                          {item.service}
-                        </span>
-                        <span className="text-xl font-medium whitespace-nowrap">
-                          {item.price}
-                        </span>
+                      <div
+                        key={itemIndex}
+                        className={`py-1 ${item.service ? 'flex flex-col sm:flex-row sm:justify-between sm:items-start gap-0 sm:gap-4' : ''}`}
+                      >
+                        {item.service ? (
+                          <>
+                            <span className="text-base sm:text-xl text-black/80 leading-relaxed min-w-0">
+                              {item.service}
+                            </span>
+                            <span className="text-base sm:text-xl font-medium shrink-0 mt-0.5 sm:mt-0">
+                              {item.price}
+                            </span>
+                          </>
+                        ) : (
+                          <span className="block h-2" aria-hidden />
+                        )}
                       </div>
                     ))}
                   </div>
@@ -253,48 +201,7 @@ export default function PricingPage() {
       {/* Spacing between sections */}
       <div className="h-16 bg-[#E6E4DE]"></div>
 
-      {/* FAQ Section - Full Width */}
-      <section className="pb-16">
-        <div className="w-full">
-          {/* FAQ Header */}
-          <div className="border-t border-black/20 px-8 py-8">
-            <h2 className="text-lg font-medium tracking-wide uppercase text-black/90">
-              Dažnai užduodami klausimai
-            </h2>
-          </div>
-          
-          {/* FAQ Items - 2 Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            {faqItems.map((faq, index) => (
-              <div key={index} className={`border-t border-black/20 ${index % 2 === 0 ? 'lg:border-r lg:border-black/20' : ''}`}>
-                <button
-                  onClick={() => toggleFAQ(faq.question)}
-                  className="w-full flex items-center justify-between px-8 py-6 text-left focus:outline-none hover:bg-white/20 transition-colors"
-                >
-                  <h3 className="text-sm font-medium pr-4 leading-relaxed">
-                    {faq.question}
-                  </h3>
-                  <div className={`transition-transform duration-500 flex-shrink-0 ${openFAQ.includes(faq.question) ? 'rotate-180' : ''}`}>
-                    <ChevronDown className="h-4 w-4 text-black/60" />
-                  </div>
-                </button>
-                
-                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  openFAQ.includes(faq.question) 
-                    ? 'max-h-screen opacity-100' 
-                    : 'max-h-0 opacity-0'
-                }`}>
-                  <div className="px-8 pb-6">
-                    <p className="text-sm text-black/80 leading-relaxed">
-                      {faq.answer}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
       <Footer />
     </div>
   )

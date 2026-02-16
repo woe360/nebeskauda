@@ -18,9 +18,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="lt" className={inter.className}>
-      <body className="antialiased">
+      <body className="antialiased overflow-x-hidden">
         <Navigation />
-        <main className="pt-16">
+        <main className="pt-16 overflow-x-hidden">
           {children}
         </main>
       </body>

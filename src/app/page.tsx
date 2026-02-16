@@ -101,34 +101,30 @@ export default function HomePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#E6E4DE]">
+    <div className="min-h-screen bg-[#E6E4DE] overflow-x-hidden">
       
       {/* Hero Section */}
-      <section className="relative h-[92vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0" />
         
         {/* Main Title - Centered */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-4xl mx-auto text-center w-full flex-1 flex items-center justify-center">
           <h1 className="text-3xl md:text-4xl lg:text-[6rem] font-light leading-none text-center tracking-wider font-louize-display">
             <div>Nebeskauda</div>
           </h1>
         </div>
 
-        {/* Bottom Left - Description */}
-        <div className="absolute bottom-16 left-8 z-10 max-w-sm">
-          <p className="text-xs uppercase tracking-wide text-gray-700 leading-relaxed">
+        {/* Bottom: stacked on mobile; on desktop full-width with text left, button right */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto md:max-w-none md:mx-0 flex flex-col md:flex-row md:absolute md:bottom-16 md:left-0 md:right-0 md:justify-between md:items-end md:px-8 gap-6 pb-8 md:pb-0">
+          <p className="text-xs uppercase tracking-wide text-gray-700 leading-relaxed max-w-sm order-2 md:order-1 md:max-w-sm">
             ŠIUOLAIKIŠKAS POŽIŪRIS Į DANTŲ PRIEŽIŪRĄ. MŪSŲ KOMANDA UŽTIKRINA AUKŠČIAUSIOS 
             KOKYBĖS GYDYMĄ IR INDIVIDUALŲ PACIENTŲ APTARNAVIMĄ.
           </p>
-        </div>
-
-        {/* Bottom Right - Register Button */}
-        <div className="absolute bottom-16 right-8 z-10">
           <Link 
             href="/kontaktai#registration-form"
-            className="px-6 py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
+            className="px-6 py-3 border-2 rounded-full border-black text-black text-sm font-medium tracking-wide uppercase 
                      hover:bg-black hover:text-white transition-all duration-300 
-                     focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                     focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 w-fit order-1 md:order-2 shrink-0"
           >
             Registruotis vizitui
           </Link>
@@ -137,8 +133,8 @@ export default function HomePage() {
 
       {/* Services Section */}
       <section className="border-t border-black/20">
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-r border-l border-black/20">
+        {/* Services Grid - single right border on mobile (no double border) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 md:border-r md:border-l border-black/20">
           {[
             {
               id: 'konsultacija-ir-istyrimal',
@@ -223,7 +219,7 @@ export default function HomePage() {
           ].map((service, index) => (
             <div
               key={service.id}
-              className="bg-[#E6E4DE] border-b border-r border-black/20 p-8 hover:bg-white/30 transition-all duration-300 cursor-pointer group min-h-[400px] flex flex-col"
+              className="bg-[#E6E4DE] border-b border-black/20 md:border-r md:border-b-0 p-6 sm:p-8 hover:bg-white/30 transition-all duration-300 cursor-pointer group min-h-[320px] md:min-h-[400px] flex flex-col"
               onClick={() => setSelectedService(service)}
             >
               {/* Illustration */}
@@ -260,10 +256,10 @@ export default function HomePage() {
 
       {/* Service Detail Modal */}
       {selectedService && (
-        <div className="fixed inset-0 bg-[#E6E4DE] z-50 overflow-hidden">
+        <div className="fixed inset-0 bg-[#E6E4DE] z-50 overflow-y-auto overflow-x-hidden">
           
           {/* Close button at top */}
-          <div className="w-full border-b border-black/20">
+          <div className="w-full border-b border-black/20 shrink-0">
             <button
               onClick={() => setSelectedService(null)}
               className="w-full text-center py-[18px] text-black text-sm font-medium tracking-wider hover:opacity-70 transition-opacity cursor-pointer"
@@ -272,17 +268,17 @@ export default function HomePage() {
             </button>
           </div>
 
-          {/* Main content */}
-          <div className="flex h-[calc(100vh-80px)]">
-            {/* Left: Large Illustration */}
-            <div className="flex-1 flex items-center justify-center p-16 border-r border-black/20">
-              <div className="w-full max-w-2xl scale-150">
+          {/* Main content - stacked on mobile, side-by-side on desktop */}
+          <div className="flex flex-col lg:flex-row min-h-[calc(100vh-80px)]">
+            {/* Illustration - smaller on mobile */}
+            <div className="flex-1 flex items-center justify-center p-6 lg:p-16 lg:border-r border-b lg:border-b-0 border-black/20 shrink-0">
+              <div className="w-full max-w-[200px] lg:max-w-2xl scale-100 lg:scale-150">
                 {selectedService.illustration}
               </div>
             </div>
 
-            {/* Right: Content */}
-            <div className="w-96 p-16 flex flex-col justify-center overflow-y-auto">
+            {/* Content */}
+            <div className="w-full lg:w-96 p-6 sm:p-8 lg:p-16 flex flex-col justify-center overflow-y-auto">
               <div className="space-y-8">
                 <div>
                   <h2 className="text-2xl font-light tracking-wide mb-2">
@@ -331,8 +327,7 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* Doctor Section */}
-      <section className="py-32 border-t border-black/20">
+<section id="about-content" className="py-32 border-t border-black/20">
         <div className="max-w-7xl mx-auto px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             
@@ -340,8 +335,8 @@ export default function HomePage() {
             <div className="order-1 lg:order-2">
               <div className="aspect-[3/3] relative overflow-hidden">
                 <Image
-                  src="/Gabriele.jpeg"
-                  alt="Gabrielė Petrauskienė"
+                  src="/Gabriele-Dile-foto.png"
+                  alt="Gabrielė Dilė"
                   width={800}
                   height={800}
                   className="w-full h-full object-cover"
@@ -365,25 +360,27 @@ export default function HomePage() {
                   <div className="flex items-center space-x-6">
                     <div className="w-12 h-[1px] bg-black/30"></div>
                     <span className="text-sm tracking-wider uppercase text-gray-600">
-                      15+ metų patirtis
+                      10+ metų patirtis
                     </span>
                   </div>
                   
                   <p className="text-lg leading-relaxed text-gray-700 max-w-md">
-                    Specializuojuosi šiuolaikiškoj implantologijoj ir estetinėj odontologijoj. 
-                    Kiekvienas pacientas gauna individualų požiūrį ir aukščiausios kokybės gydymą.
+                    Mano pagridinis fokusas - endodontija. Dirbu su pažangiausia įranga, mikroskopu leidžiančiu pasiekti maksimalų tikslumą.
+                    Vadovaujuosi individualizuotu požiuriu į pacientą, siekdama aukščiausios gydymo kokybės, komforto ir ilgalaikių rezultatų. 
+
+
                   </p>
                 </div>
                 
-                <div className="grid grid-cols-1 gap-4 max-w-sm">
-                  <div className="text-sm text-gray-600">
-                    • Vilniaus universiteto medicinos fakultetas
+                <div className="grid grid-cols-1 gap-4 max-w-md">
+                  <div className="text-md text-gray-600">
+                    • Lietuvos sveikatos mokslų universitetas
                   </div>
-                  <div className="text-sm text-gray-600">
-                    • Lietuvos odontologų sąjungos narė
+                  <div className="text-md text-gray-600">
+                    • Lietuvos endodologų draugija
                   </div>
-                  <div className="text-sm text-gray-600">
-                    • Implantologijos ir estetikos specialistė
+                  <div className="text-md text-gray-600">
+                    • Europos sąjungos endodontologų asocijacija
                   </div>
                 </div>
               </div>
@@ -394,33 +391,35 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-32 bg-[#37383c] text-white relative">
-        <div className="max-w-6xl mx-auto px-8 text-center">
+      <section className="py-16 sm:py-24 lg:py-32 bg-[#37383c] text-white relative overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           {/* Main Title */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-20 font-louize-display">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-wide mb-12 lg:mb-20 font-louize-display">
             Pasirūpinome virš 5000 dantų
           </h2>
           
-          {/* Testimonial Content */}
+          {/* Testimonial Content - wider quote on mobile */}
           <div className="relative max-w-4xl mx-auto">
-            {/* Navigation Arrows - Moved further to sides */}
+            {/* Navigation Arrows - inside bounds on mobile to avoid overflow */}
             <button
               onClick={prevTestimonial}
-              className="absolute -left-45 top-1/2 transform -translate-y-1/2 w-16 h-16 border border-white/30 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"
+              className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 border border-white/30 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors z-10"
+              aria-label="Ankstesnis atsiliepimas"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             
             <button
               onClick={nextTestimonial}
-              className="absolute -right-45 top-1/2 transform -translate-y-1/2 w-16 h-16 border border-white/30 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"
+              className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 sm:w-16 sm:h-16 border border-white/30 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors z-10"
+              aria-label="Kitas atsiliepimas"
             >
-              <ChevronRight className="w-6 h-6" />
+              <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>
             
-            {/* Testimonial Text */}
-            <div className="px-20">
-              <blockquote className="text-xl md:text-xl leading-relaxed mb-8 italic">
+            {/* Testimonial Text - less padding on mobile so quote is wider */}
+            <div className="px-12 sm:px-16 md:px-20">
+              <blockquote className="text-lg sm:text-xl leading-relaxed mb-6 sm:mb-8 italic">
                 &ldquo;{testimonials[currentTestimonial].text}&rdquo;
               </blockquote>
               
@@ -494,15 +493,12 @@ export default function HomePage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8">
             <h2 className="text-2xl md:text-3xl font-medium tracking-wide text-black font-louize-display">
-              PRADĖKIME KELIĄ Į SVEIKUS DANTIS
+              Pradėkime kelią į sveikus dantis
             </h2>
-            <p className="text-sm text-gray-600 tracking-wide uppercase">
-              PIRMOJI KONSULTACIJA VISADA NEMOKAMA
-            </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
               <a 
                 href="tel:+370 628 76 76"
-                className="flex-1 px-6 py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
+                className="flex-1 px-6 rounded-full py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
                          hover:bg-black hover:text-white transition-all duration-300 
                          focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 
                          flex items-center justify-center"
@@ -511,7 +507,7 @@ export default function HomePage() {
               </a>
               <Link 
                 href="/kontaktai#registration-form"
-                className="flex-1 px-6 py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
+                className="flex-1 px-6 rounded-full py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
                          hover:bg-black hover:text-white transition-all duration-300 
                          focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 
                          flex items-center justify-center"

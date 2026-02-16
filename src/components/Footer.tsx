@@ -49,14 +49,14 @@ export default function Footer() {
         {/* Left side - Contact Info */}
         <div className="space-y-2">
           <div className="text-sm">+370 62 87 67 67</div>
-          <div className="text-sm">INFO@NEBESKAUDA.LT</div>
+          <div className="text-sm">info@nebeskauda.com</div>
           <div className="text-sm">ŠIAURĖS G. 1, KAUNAS</div>
         </div>
 
         {/* Right side - Social Links */}
         <div className="space-y-2 text-right">
           <div className="text-sm">
-            <Link href="#" className="hover:opacity-70 transition-opacity">
+            <Link href="https://www.instagram.com/nebeskauda.klinika/" className="hover:opacity-70 transition-opacity">
               INSTAGRAM
             </Link>
           </div>

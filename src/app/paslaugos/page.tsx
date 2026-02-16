@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Link from 'next/link'
 import Footer from '@/components/Footer'
 
 interface Service {
@@ -101,28 +102,24 @@ export default function ServicesPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#E6E4DE] text-black font-sans">
-      {/* Hero Section */}
-      <section className="relative h-[92vh] flex items-center justify-center overflow-hidden">
+    <div className="min-h-screen bg-[#E6E4DE] text-black font-sans overflow-x-hidden">
+      {/* Hero Section - stacked on mobile to avoid overlap */}
+      <section className="relative min-h-[92vh] flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0" />
         
         {/* Main Title - Centered */}
-        <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-4xl mx-auto text-center w-full flex-1 flex items-center justify-center">
           <h1 className="text-3xl md:text-4xl lg:text-[6rem] font-light leading-none text-center tracking-wider font-louize-display">
             <div>Paslaugos</div>
           </h1>
         </div>
 
-        {/* Bottom Left - Description */}
-        <div className="absolute bottom-16 left-8 z-10 max-w-sm">
-          <p className="text-xs uppercase tracking-wide text-gray-700 leading-relaxed">
+        {/* Bottom: stacked on mobile; on desktop full-width with text left, button right */}
+        <div className="relative z-10 w-full max-w-5xl mx-auto md:max-w-none md:mx-0 flex flex-col md:flex-row md:absolute md:bottom-16 md:left-0 md:right-0 md:justify-between md:items-end md:px-8 gap-6 pb-8 md:pb-0">
+          <p className="text-xs uppercase tracking-wide text-gray-700 leading-relaxed max-w-sm order-2 md:order-1 md:max-w-sm">
             VISAPUSIŠKAS DANTŲ GYDYMAS. ŠIUOLAIKIŠKAS ĮRANGA IR PATYRUSI KOMANDA UŽTIKRINA 
             AUKŠČIAUSIOS KOKYBĖS PASLAUGAS KIEKVIENAM PACIENTUI.
           </p>
-        </div>
-
-        {/* Bottom Right - Register Button */}
-        <div className="absolute bottom-16 right-8 z-10">
           <button
             onClick={() => {
               const element = document.getElementById('services-grid')
@@ -130,26 +127,25 @@ export default function ServicesPage() {
                 element.scrollIntoView({ behavior: 'smooth' })
               }
             }}
-            className="px-6 py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
+            className="px-6 py-3 border-2 rounded-full border-black text-black text-sm font-medium tracking-wide uppercase 
                      hover:bg-black hover:text-white transition-all duration-300 
-                     focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
+                     focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 w-fit order-1 md:order-2 shrink-0"
           >
             Žiūrėti paslaugas
           </button>
         </div>
       </section>
 
-      {/* Services Grid - Full Width, Connected to Previous Section */}
+      {/* Services Grid */}
       <section id="services-grid">
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 gap-0 border-r border-l border-black/20 lg:auto-rows-[400px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 lg:grid-rows-2 gap-0 border-b border-black/20 md:border-r md:border-l md:border-b-0 border-black/20 lg:auto-rows-[400px]">
           {services.map((service, index) => (
             <div
               key={service.id}
-              className={`bg-[#E6E4DE] border-b border-black/20 p-8 hover:bg-white/30 transition-all duration-300 cursor-pointer group h-[400px] flex flex-col ${
+              className={`bg-[#E6E4DE] border-b border-black/20 md:border-b-0 p-6 sm:p-8 hover:bg-white/30 transition-all duration-300 cursor-pointer group min-h-[280px] md:min-h-[320px] lg:h-[400px] flex flex-col ${
                 index < 3 ? 'lg:col-span-2' : 'lg:col-span-3'
               } ${
-                index !== 2 && index !== 4 ? 'border-r border-black/20' : ''
+                index !== 2 && index !== 4 ? 'md:border-r border-black/20' : ''
               }`}
               onClick={() => setSelectedService(service)}
             >
@@ -174,70 +170,72 @@ export default function ServicesPage() {
        
       </section>
 
-      {/* Service Detail Modal */}
+      {/* Service Detail Modal - stacked on mobile, side-by-side on lg */}
       {selectedService && (
-        <div className="fixed inset-0 bg-[#E6E4DE] z-50 overflow-hidden">
-          
+        <div className="fixed inset-0 bg-[#E6E4DE] z-50 overflow-y-auto overflow-x-hidden">
           {/* Close button at top */}
-          <div className="w-full text-center py-6 border-b border-black/20">
+          <div className="w-full text-center py-4 sm:py-6 border-b border-black/20 shrink-0 sticky top-0 bg-[#E6E4DE] z-10">
             <button
               onClick={() => setSelectedService(null)}
-              className="text-black text-sm font-medium tracking-wider hover:opacity-70 transition-opacity"
+              className="text-black text-sm font-medium tracking-wider hover:opacity-70 transition-opacity px-4"
             >
               UŽDARYTI
             </button>
           </div>
 
-          {/* Main content */}
-          <div className="flex h-[calc(100vh-80px)]">
-            {/* Left: Large Illustration */}
-            <div className="flex-1 flex items-center justify-center p-16 border-r border-black/20">
-              <div className="w-full max-w-2xl scale-150">
+          {/* Main content - column on mobile, row on lg */}
+          <div className="flex flex-col lg:flex-row min-h-0">
+            {/* Illustration - smaller on mobile */}
+            <div className="flex-shrink-0 flex items-center justify-center p-6 lg:p-16 lg:flex-1 border-b lg:border-b-0 lg:border-r border-black/20 bg-[#E6E4DE]">
+              <div className="w-full max-w-[180px] sm:max-w-[220px] lg:max-w-2xl scale-100 lg:scale-150">
                 {selectedService.illustration}
               </div>
             </div>
 
-            {/* Right: Content */}
-            <div className="w-96 p-16 flex flex-col justify-center overflow-y-auto">
-              <div className="space-y-8">
+            {/* Content - full width on mobile, readable text */}
+            <div className="w-full lg:w-96 flex-1 p-6 sm:p-8 lg:p-16 flex flex-col justify-center min-h-0">
+              <div className="space-y-6 sm:space-y-8 max-w-xl lg:max-w-none">
                 <div>
-                  <h2 className="text-2xl font-light tracking-wide mb-2">
+                  <h2 className="text-xl sm:text-2xl font-light tracking-wide mb-2 text-black">
                     {selectedService.title}
                   </h2>
-                  <p className="text-sm text-gray-600 font-medium tracking-wider mb-6">
+                  <p className="text-sm text-gray-600 font-medium tracking-wider mb-4 sm:mb-6">
                     {selectedService.subtitle}
                   </p>
-                  <p className="text-gray-700 leading-relaxed">
+                  <p className="text-base text-gray-700 leading-relaxed">
                     {selectedService.description}
                   </p>
                 </div>
 
                 <div className="space-y-4">
-                  <h4 className="font-medium tracking-wide text-sm">PASLAUGOS APIMA:</h4>
+                  <h4 className="font-medium tracking-wide text-sm text-black">PASLAUGOS APIMA:</h4>
                   <ul className="space-y-3">
                     {selectedService.details.map((detail, idx) => (
-                      <li key={idx} className="text-sm text-gray-600 flex items-start">
-                        <span className="w-1 h-1 bg-black rounded-full mr-3 mt-2"></span>
+                      <li key={idx} className="text-sm sm:text-base text-gray-700 flex items-start gap-3">
+                        <span className="w-1.5 h-1.5 bg-black rounded-full mt-2 shrink-0" />
                         <span>{detail}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8 pt-8 border-t border-black/20">
+                <div className="grid grid-cols-2 gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-black/20">
                   <div>
-                    <div className="text-xs text-gray-500 mb-2 tracking-wider">KAINA</div>
-                    <div className="font-medium">{selectedService.price}</div>
+                    <div className="text-xs text-gray-500 mb-1 tracking-wider">KAINA</div>
+                    <div className="font-medium text-black">{selectedService.price}</div>
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500 mb-2 tracking-wider">TRUKMĖ</div>
-                    <div className="font-medium">{selectedService.duration}</div>
+                    <div className="text-xs text-gray-500 mb-1 tracking-wider">TRUKMĖ</div>
+                    <div className="font-medium text-black">{selectedService.duration}</div>
                   </div>
                 </div>
 
-                <button className="w-full bg-black text-white py-4 mt-8 text-sm font-medium tracking-wider hover:bg-gray-800 transition-colors ">
+                <Link
+                  href="/kontaktai#registration-form"
+                  className="w-full bg-black text-white py-4 mt-6 sm:mt-8 text-sm font-medium tracking-wider hover:bg-gray-800 transition-colors text-center block"
+                >
                   REGISTRUOTIS VIZITUI
-                </button>
+                </Link>
               </div>
             </div>
           </div>
