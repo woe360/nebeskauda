@@ -80,18 +80,19 @@ function Navigation() {
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
+      {/* Mobile: header bar */}
       <div className="md:hidden border-b border-black/20">
         <div className="flex items-center justify-between px-6 py-4">
           <Link href="/" className="hover:opacity-70 transition-opacity">
-                          <div className={'text-xl font-louize-display tracking-wide leading-none'} >
+            <div className="text-xl font-louize-display tracking-wide leading-none">
               NEBESKAUDA
             </div>
           </Link>
-          
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="p-2 hover:opacity-70 transition-opacity"
+            aria-label={isMenuOpen ? 'Uždaryti meniu' : 'Atidaryti meniu'}
+            aria-expanded={isMenuOpen}
           >
             {isMenuOpen ? (
               <X className="h-6 w-6" />
@@ -100,58 +101,65 @@ function Navigation() {
             )}
           </button>
         </div>
+      </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="border-t border-black/20">
-            <div className="px-6 py-4 space-y-4">
-              <Link
-                href="/apie-mus"
-                className={`block text-sm font-medium tracking-wide hover:opacity-70 transition-opacity leading-none ${
-                  isActive('/apie-mus') 
-                    ? 'border-b border-black' 
-                    : ''
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                APIE MUS
-              </Link>
-              <Link
-                href="/paslaugos"
-                className={`block text-sm font-medium tracking-wide hover:opacity-70 transition-opacity leading-none ${
-                  isActive('/paslaugos') 
-                    ? 'border-b border-black' 
-                    : ''
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                PASLAUGOS
-              </Link>
-              <Link
-                href="/kainos"
-                className={`block text-sm font-medium tracking-wide hover:opacity-70 transition-opacity leading-none ${
-                  isActive('/kainos') 
-                    ? 'border-b border-black' 
-                    : ''
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                KAINOS
-              </Link>
-              <Link
-                href="/kontaktai"
-                className={`block text-sm font-medium tracking-wide hover:opacity-70 transition-opacity leading-none ${
-                  isActive('/kontaktai') 
-                    ? 'border-b border-black' 
-                    : ''
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                KONTAKTAI
-              </Link>
-            </div>
-          </div>
-        )}
+      {/* Mobile: full-screen menu – slides down from top, centered links */}
+      <div
+        className={`md:hidden fixed inset-0 z-[60] bg-[#E6E4DE] flex flex-col transition-transform duration-300 ease-out ${
+          isMenuOpen ? 'translate-y-0' : '-translate-y-full'
+        } ${!isMenuOpen ? 'pointer-events-none' : ''}`}
+        aria-hidden={!isMenuOpen}
+      >
+        <div className="flex justify-end p-6 shrink-0">
+          <button
+            onClick={() => setIsMenuOpen(false)}
+            className="p-2 hover:opacity-70 transition-opacity"
+            aria-label="Uždaryti meniu"
+          >
+            <X className="h-6 w-6" />
+          </button>
+        </div>
+
+        <nav className="flex-1 flex flex-col justify-center items-center gap-10 py-12 px-6">
+          <Link
+            href="/apie-mus"
+            className={`text-lg font-medium tracking-wide hover:opacity-70 transition-opacity ${
+              isActive('/apie-mus') ? 'border-b border-black' : ''
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            APIE MUS
+          </Link>
+          <Link
+            href="/paslaugos"
+            className={`text-lg font-medium tracking-wide hover:opacity-70 transition-opacity ${
+              isActive('/paslaugos') ? 'border-b border-black' : ''
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            PASLAUGOS
+          </Link>
+          <Link
+            href="/kainos"
+            className={`text-lg font-medium tracking-wide hover:opacity-70 transition-opacity ${
+              isActive('/kainos') ? 'border-b border-black' : ''
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            KAINOS
+          </Link>
+          <Link
+            href="/kontaktai"
+            className={`text-lg font-medium tracking-wide hover:opacity-70 transition-opacity ${
+              isActive('/kontaktai') ? 'border-b border-black' : ''
+            }`}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            KONTAKTAI
+          </Link>
+        </nav>
+
+        <div className="shrink-0 h-12" aria-hidden />
       </div>
     </div>
   )
