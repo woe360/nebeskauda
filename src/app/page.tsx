@@ -33,7 +33,7 @@ export default function HomePage() {
       name: "Mindaugas Kazlauskas"
     },
     {
-      text: "Vaikų dantų gydymas praėjo puikiai. Daktaras sugebėjo nuraminti vaiką ir atlikti viską be streso.",
+      text: "Vaikų dantų gydymas praėjo puikiai. Gydytoja sugebėjo nuraminti vaiką ir atlikti viską be streso.",
       name: "Rasa Stonkuvienė"
     }
   ]
