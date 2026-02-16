@@ -25,6 +25,61 @@
   font-family: 'Kugile Demo', serif, sans-serif;
 }
 
+/* Testimonial: outgoing (old text slides out) */
+@keyframes testimonial-out-next {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-2rem);
+    opacity: 0;
+  }
+}
+@keyframes testimonial-out-prev {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(2rem);
+    opacity: 0;
+  }
+}
+/* Testimonial: incoming (new text slides in) */
+@keyframes testimonial-in-next {
+  from {
+    transform: translateX(2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes testimonial-in-prev {
+  from {
+    transform: translateX(-2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+.testimonial-out-next {
+  animation: testimonial-out-next 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.testimonial-out-prev {
+  animation: testimonial-out-prev 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.testimonial-in-next {
+  animation: testimonial-in-next 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.testimonial-in-prev {
+  animation: testimonial-in-prev 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
 @layer components {
   .section-border {
     border-top: 1px solid #e5e7eb;

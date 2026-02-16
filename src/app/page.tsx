@@ -1,19 +1,19 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Link from 'next/link'
 import Footer from '@/components/Footer'
 import Image from 'next/image'
 import PaslaugosSection from '@/components/PaslaugosSection'
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight
-} from 'lucide-react'
+
+const TESTIMONIAL_ANIM_MS = 550
 
 export default function HomePage() {
   const [openFAQ, setOpenFAQ] = useState<string[]>([])
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
+  const [testimonialDirection, setTestimonialDirection] = useState<'next' | 'prev'>('next')
+  const [transitionFromIndex, setTransitionFromIndex] = useState<number | null>(null)
+  const transitionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const toggleFAQ = (question: string) => {
     setOpenFAQ(prev => 
@@ -25,7 +25,7 @@ export default function HomePage() {
 
   const testimonials = [
     {
-      text: "Burnos higiena be streso ir skausmo – nuoširdžiai dėkoju Kristinai už rūpestingą ir profesionalų darbą.",
+      text: "Burnos higiena be streso ir skausmo – nuoširdžiai dėkoju Gabrielei už rūpestingą ir profesionalų darbą.",
       name: "Ona Petraitienė"
     },
     {
@@ -38,12 +38,28 @@ export default function HomePage() {
     }
   ]
 
+  const runTransition = (direction: 'next' | 'prev', nextIndex: number) => {
+    if (transitionTimeoutRef.current) clearTimeout(transitionTimeoutRef.current)
+    setTestimonialDirection(direction)
+    setTransitionFromIndex(currentTestimonial)
+    setCurrentTestimonial(nextIndex)
+    transitionTimeoutRef.current = setTimeout(() => {
+      setTransitionFromIndex(null)
+      transitionTimeoutRef.current = null
+    }, TESTIMONIAL_ANIM_MS)
+  }
+
   const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
+    runTransition('next', (currentTestimonial + 1) % testimonials.length)
   }
 
   const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length)
+    runTransition('prev', (currentTestimonial - 1 + testimonials.length) % testimonials.length)
+  }
+
+  const goToTestimonial = (index: number) => {
+    if (index === currentTestimonial) return
+    runTransition(index > currentTestimonial ? 'next' : 'prev', index)
   }
 
   const faqItems = [
@@ -64,20 +80,8 @@ export default function HomePage() {
       answer: "Implanto įgijimas į kaulus trunka 3-6 mėnesius. Šis laikas priklauso nuo jūsų individualių organizmo ypatybių, kaulų kokybės ir implanto vietos. Laikinąją kronelę galime uždėti iš karto arba po kelių savaičių."
     },
     {
-      question: "Ar galiu valgyti po dantų gydymo procedūrų?",
-      answer: "Po paprastų gydymo procedūrų valgyti galite iš karto, tačiau rekomenduojame vengti labai karštų ar šaltų maisto produktų 2-3 valandas. Po chirurginių procedūrų duosime detalius nurodymus apie mitybą ir dantų priežiūrą."
-    },
-    {
       question: "Kaip dažnai reikia atlikti dantų higieną?",
       answer: "Profesionalią dantų higieną rekomenduojame atlikti kas 6 mėnesius. Žmonėms, turintiems dantų problemų ar gingivitą, gali prireikti dažnesnės higienos - kas 3-4 mėnesius. Individualų grafiką aptarsime konsultacijos metu."
-    },
-    {
-      question: "Ar teikiate garantijas procedūroms?",
-      answer: "Taip, visoms mūsų atliekamoms procedūroms teikiame garantijas. Plomboms garantija 2 metai, kronelėms ir tiltams - 3-5 metai, implantams - 5-10 metų. Garantijos sąlygos priklauso nuo procedūros tipo ir jūsų dantų priežiūros."
-    },
-    {
-      question: "Ar galima atvesti vaikus į kliniką?",
-      answer: "Žinoma! Mūsų klinikoje dirbą vaikų odontologijos specialistė. Priimame vaikus nuo 3 metų amžiaus. Stengiamės sukurti draugišką aplinką mažiesiems pacientams ir padėti jiems nebijojai dantų gydytojo."
     },
     {
       question: "Ką daryti dantų skausmo atveju?",
@@ -98,7 +102,7 @@ export default function HomePage() {
         
         {/* Main Title - Centered */}
         <div className="relative z-10 max-w-4xl mx-auto text-center w-full flex-1 flex items-center justify-center">
-          <h1 className="text-3xl md:text-4xl lg:text-[6rem] font-light leading-none text-center tracking-wider font-louize-display">
+          <h1 className="text-3xl md:text-4xl lg:text-[6rem] uppercase font-light leading-none text-center tracking-wider font-louize-display">
             <div>Nebeskauda</div>
           </h1>
         </div>
@@ -122,68 +126,66 @@ export default function HomePage() {
 
       <PaslaugosSection />
 
-      <section id="about-content" className="py-32 border-t border-black/20">
-        <div className="max-w-1960px mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            
-            {/* Left: Image */}
-            <div className="order-1 lg:order-2">
-              <div className="aspect-[3/3] relative overflow-hidden">
-                <Image
-                  src="/Gabriele-Dile-foto.png"
-                  alt="Gabrielė Dilė"
-                  width={800}
-                  height={800}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+      {/* <GabrieleSection /> */}
 
-            {/* Right: Content */}
-            <div className="order-2 lg:order-1 space-y-12">
-              <div className="space-y-8">
-                <div>
-                  <div className="text-sm tracking-wider uppercase text-gray-500 mb-4">
-                    Gydytoja odontologė
-                  </div>
-                  <h2 className="text-5xl md:text-6xl font-light tracking-wide font-louize-display text-gray-900 mb-6">
-                    Gabrielė Dilė
-                  </h2>
-                </div>
-                
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-6">
-                    <div className="w-12 h-[1px] bg-black/30"></div>
-                    <span className="text-sm tracking-wider uppercase text-gray-600">
-                      10+ metų patirtis
-                    </span>
-                  </div>
-                  
-                  <p className="text-lg leading-relaxed text-gray-700 max-w-md">
-                    Mano pagridinis fokusas - endodontija. Dirbu su pažangiausia įranga, mikroskopu leidžiančiu pasiekti maksimalų tikslumą.
-                    Vadovaujuosi individualizuotu požiuriu į pacientą, siekdama aukščiausios gydymo kokybės, komforto ir ilgalaikių rezultatų. 
-
-
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 gap-4 max-w-md">
-                  <div className="text-md text-gray-600">
-                    • Lietuvos sveikatos mokslų universitetas
-                  </div>
-                  <div className="text-md text-gray-600">
-                    • Lietuvos endodologų draugija
-                  </div>
-                  <div className="text-md text-gray-600">
-                    • Europos sąjungos endodontologų asocijacija
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+      <section id="about-content" className="w-full border-t border-black/10 overflow-hidden">
+  <div className="max-w-[1960px] mx-auto flex flex-col lg:flex-row min-h-[800px]">
+    
+    {/* Left Column: The Narrative (33.3% width) */}
+    <div className="w-full lg:w-1/3 flex items-center justify-center p-8 lg:p-24 order-2 lg:order-1">
+      <div className="max-w-sm space-y-12">
+      <div className="flex items-center gap-4">
+            <div className="w-12 h-[1px] bg-black/20" />
+            <span className="text-[14px] uppercase text-gray-700">10+ Metų patirtis</span>
           </div>
+        {/* Paragraph 1 */}
+        <p className="text-[16px] leading-relaxed text-gray-800 font-light">
+          Mano pagridinis fokusas — <span className="italic">endodontija</span>. Dirbu su pažangiausia įranga, 
+          mikroskopu leidžiančiu pasiekti maksimalų tikslumą. 
+          Vadovaujuosi individualizuotu požiuriu į pacientą, siekdama aukščiausios 
+          gydymo kokybės, komforto ir ilgalaikių rezultatų.
+        </p>
+
+        {/* Credentials List */}
+        <div className="space-y-2 pt-4 border-t border-black/20">
+          {[
+            "Lietuvos sveikatos mokslų universitetas", 
+            "Lietuvos endodologų draugija", 
+            "Europos sąjungos endodontologų asocijacija"
+          ].map((item) => (
+            <p key={item} className="text-[14px] uppercase text-gray-900 font-light">
+              • {item}
+            </p>
+          ))}
         </div>
-      </section>
+      </div>
+    </div>
+
+    {/* Center Column: The Display Name (33.3% width) */}
+    <div className="w-full lg:w-1/3 flex flex-col items-center justify-center p-12 lg:p-0 order-1 lg:order-2">
+      <span className="text-[14px] uppercase text-gray-800 mb-6">
+        Gydytoja Odontologė
+      </span>
+      
+      <h2 className="text-6xl md:text-7xl font-light tracking-tighter font-louize-display text-gray-900 leading-none text-center">
+        Gabrielė Dilė
+      </h2>
+      
+    </div>
+
+    {/* Right Column: The Image (33.3% width) */}
+    <div className="w-full lg:w-1/3 relative min-h-[500px] lg:min-h-full order-3">
+      <Image
+        src="/Gabriele-Dile-foto.png"
+        alt="Gabrielė Dilė"
+        fill
+        priority
+        className="object-cover object-center grayscale-[0.1]"
+      />
+    </div>
+    
+  </div>
+</section>
 
       {/* Testimonials Section */}
       <section className="py-16 sm:py-24 lg:py-32 bg-[#37383c]/60 text-white relative overflow-hidden">
@@ -198,27 +200,61 @@ export default function HomePage() {
         <div className="w-full flex items-center justify-between gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-6 lg:px-8">
           <button
             onClick={prevTestimonial}
-            className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 border border-white/30 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"
+            className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors"
             aria-label="Ankstesnis atsiliepimas"
           >
-            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="relative w-20 h-20 sm:w-24 sm:h-24 block -rotate-90">
+              <Image src="/dantukas.png" alt="" fill className="object-contain invert opacity-100" sizes="80px" />
+            </span>
           </button>
 
-          <div className="flex-1 min-w-0 max-w-4xl mx-auto text-center px-2 sm:px-4">
-            <blockquote className="text-lg sm:text-xl leading-relaxed mb-6 sm:mb-8 italic">
-              &ldquo;{testimonials[currentTestimonial].text}&rdquo;
-            </blockquote>
-            <div className="text-sm tracking-wider uppercase text-white/70">
-              KLINIKOS PACIENTAS
-            </div>
+          <div className="flex-1 min-w-0 max-w-4xl mx-auto text-center px-2 sm:px-4 overflow-hidden min-h-[140px] sm:min-h-[160px] relative">
+            {transitionFromIndex !== null ? (
+              <>
+                <div
+                  key={`out-${transitionFromIndex}`}
+                  className={`absolute inset-0 flex flex-col justify-center ${testimonialDirection === 'next' ? 'testimonial-out-next' : 'testimonial-out-prev'}`}
+                  aria-hidden
+                >
+                  <blockquote className="text-lg sm:text-xl leading-relaxed mb-6 sm:mb-8 italic">
+                    &ldquo;{testimonials[transitionFromIndex].text}&rdquo;
+                  </blockquote>
+                  <div className="text-sm tracking-wider uppercase text-white/70">
+                    KLINIKOS PACIENTAS
+                  </div>
+                </div>
+                <div
+                  key={`in-${currentTestimonial}`}
+                  className={`absolute inset-0 flex flex-col justify-center ${testimonialDirection === 'next' ? 'testimonial-in-next' : 'testimonial-in-prev'}`}
+                >
+                  <blockquote className="text-lg sm:text-xl leading-relaxed mb-6 sm:mb-8 italic">
+                    &ldquo;{testimonials[currentTestimonial].text}&rdquo;
+                  </blockquote>
+                  <div className="text-sm tracking-wider uppercase text-white/70">
+                    KLINIKOS PACIENTAS
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="absolute inset-0 flex flex-col justify-center">
+                <blockquote className="text-lg sm:text-xl leading-relaxed mb-6 sm:mb-8 italic">
+                  &ldquo;{testimonials[currentTestimonial].text}&rdquo;
+                </blockquote>
+                <div className="text-sm tracking-wider uppercase text-white/70">
+                  KLINIKOS PACIENTAS
+                </div>
+              </div>
+            )}
           </div>
 
           <button
             onClick={nextTestimonial}
-            className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 border border-white/30 rounded-full flex items-center justify-center hover:bg-white/10 transition-colors"
+            className="shrink-0 w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition-colors"
             aria-label="Kitas atsiliepimas"
           >
-            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+            <span className="relative w-20 h-20 sm:w-24 sm:h-24 block rotate-90">
+              <Image src="/dantukas.png" alt="" fill className="object-contain invert opacity-100" sizes="80px" />
+            </span>
           </button>
         </div>
 
@@ -228,7 +264,7 @@ export default function HomePage() {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => setCurrentTestimonial(index)}
+                onClick={() => goToTestimonial(index)}
                 className={`w-2 h-2 rounded-full transition-colors ${
                   index === currentTestimonial ? 'bg-white' : 'bg-white/30'
                 }`}
@@ -238,17 +274,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FAQ Section - Full Width */}
+      {/* FAQ Section - Full Width (commented out)
       <section className="pb-16 my-20">
         <div className="w-full">
-          {/* FAQ Header */}
           <div className="px-8 py-8">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-wide text-black/90 font-louize-display">
               Dažnai užduodami klausimai
             </h2>
           </div>
-          
-          {/* FAQ Items - 2 Column Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {faqItems.map((faq, index) => (
               <div key={index} className={`border-t border-black/20 ${index % 2 === 0 ? 'lg:border-r lg:border-black/20' : ''}`}>
@@ -263,7 +296,6 @@ export default function HomePage() {
                     <ChevronDown className="h-4 w-4 text-black/60" />
                   </div>
                 </button>
-                
                 <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
                   openFAQ.includes(faq.question) 
                     ? 'max-h-screen opacity-100' 
@@ -280,37 +312,117 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      */}
 
-      {/* CTA Section */}
-      <section className="py-45 border-t border-black/20">
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="space-y-8">
-            <h2 className="text-2xl md:text-3xl font-medium tracking-wide text-black font-louize-display">
-              Pradėkime kelią į sveikus dantis
-            </h2>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
-              <a 
-                href="tel:+370 628 76 76"
-                className="flex-1 px-6 rounded-full py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
-                         hover:bg-black hover:text-white transition-all duration-300 
-                         focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 
-                         flex items-center justify-center"
-              >
-                SKAMBINTI
-              </a>
-              <Link 
-                href="/kontaktai#registration-form"
-                className="flex-1 px-6 rounded-full py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
-                         hover:bg-black hover:text-white transition-all duration-300 
-                         focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 
-                         flex items-center justify-center"
-              >
-                REGISTRUOTIS
-              </Link>
-            </div>
+{/* FAQ Section - High-End Editorial Split */}
+<section className="w-full border-t border-black/10">
+  <div className="max-w-[1960px] mx-auto flex flex-col lg:flex-row min-h-[700px]">
+    
+    {/* LEFT SIDE: The Question List (50% Width) */}
+    <div className="w-full lg:w-1/2 p-8 lg:p-12 lg:border-r border-black/10">
+      <div className="mb-20">
+        <h2 className="text-5xl font-light tracking-tighter font-louize-display text-gray-900 leading-none">
+          Dažnai užduodami klausimai
+        </h2>
+      </div>
+
+      <div className="space-y-4">
+        {faqItems.map((faq, index) => (
+          <button
+            key={index}
+            onMouseEnter={() => setOpenFAQ([faq.question])} // Reveal on hover for that 'Gallery' feel
+            onClick={() => toggleFAQ(faq.question)}
+            className="group w-full flex items-center justify-between py-6 text-left border-b border-black/5 last:border-0 transition-all duration-500"
+          >
+            <span className={`text-[16px] tracking-wide uppercase transition-all duration-500 ${
+              openFAQ.includes(faq.question) 
+                ? 'text-black translate-x-6' 
+                : 'text-gray-800 group-hover:text-gray-600'
+            }`}>
+              {faq.question}
+            </span>
+            
+            {/* Minimalist Indicator */}
+            <div className={`w-1.5 h-1.5 rounded-full transition-all duration-700 ${
+              openFAQ.includes(faq.question) ? 'bg-black scale-150' : 'bg-transparent border border-black/20'
+            }`} />
+          </button>
+        ))}
+      </div>
+    </div>
+
+    {/* RIGHT SIDE: The Dynamic Reading Pane (50% Width) */}
+    {/* No background added as requested; uses your site's existing BG */}
+    <div className="w-full lg:w-1/2 flex items-center justify-center p-12 lg:p-24 relative overflow-hidden">
+      <div className="max-w-md w-full relative h-[400px]">
+        {faqItems.map((faq, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 flex flex-col justify-center transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)] ${
+              openFAQ.includes(faq.question) 
+                ? 'opacity-100 translate-y-0 scale-100' 
+                : 'opacity-0 translate-y-20 scale-95 pointer-events-none'
+            }`}
+          >
+            {/* Sophisticated Accent Line */}
+            <div className="w-12 h-[1px] bg-black/20 mb-10" />
+            
+            <p className="text-[24px] leading-relaxed text-gray-800 font-light italic ">
+               {faq.answer}
+            </p>
           </div>
-        </div>
-      </section>
+        ))}
+
+        {/* Subtle Hint when nothing is active */}
+        {openFAQ.length === 0 && (
+          <div className="absolute inset-0 flex items-center justify-center border border-dashed border-black/5 rounded-full aspect-square max-w-[200px] mx-auto">
+            <p className="text-[16px] tracking-wide uppercase text-gray-900">
+              Pasirinkite klausimą
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+      {/* CTA Section - Studio Boum Grand Finale */}
+<section className="w-full border-t border-black/10 py-40 lg:py-64">
+  <div className="max-w-[1960px] mx-auto px-12 lg:px-24">
+    <div className="flex flex-col lg:flex-row items-end justify-between gap-20">
+      
+      {/* Left: The Big Statement */}
+      <div className="w-full lg:w-2/3">
+        <h2 className="text-5xl md:text-7xl lg:text-[100px] font-light font-louize-display text-gray-900 ">
+          Pradėkime kelią <br /> 
+          <span className="ml-[0.1em]"> į sveikus </span> 
+          dantis
+        </h2>
+      </div>
+
+      {/* Right: The Minimalist Actions */}
+      <div className="w-full lg:w-1/3 flex flex-col space-y-4">
+        <a 
+          href="tel:+3706287676"
+          className="group w-full py-8 border-b border-black/10 flex items-center justify-between hover:border-black transition-colors duration-500"
+        >
+          <span className="text-[13px] tracking-[0.3em] uppercase font-medium">Skambinti</span>
+          <div className="w-2 h-2 rounded-full bg-black scale-0 group-hover:scale-100 transition-transform duration-500" />
+        </a>
+        
+        <Link 
+          href="/kontaktai#registration-form"
+          className="group w-full py-8 border-b border-black/10 flex items-center justify-between hover:border-black transition-colors duration-500"
+        >
+          <span className="text-[13px] tracking-[0.3em] uppercase font-medium">Registruotis</span>
+          <div className="w-2 h-2 rounded-full bg-black scale-0 group-hover:scale-100 transition-transform duration-500" />
+        </Link>
+      </div>
+
+    </div>
+  </div>
+</section>
 
       <Footer />
     </div>

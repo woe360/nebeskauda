@@ -3,12 +3,6 @@
 import React from 'react'
 import Image from 'next/image'
 import Footer from '@/components/Footer'
-import {
-  CheckCircle,
-  MapPin,
-  Phone,
-  Mail
-} from 'lucide-react'
 
 export default function AboutPage() {
   return (
@@ -50,160 +44,169 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Doctor Section */}
-      <section id="about-content" className="py-32 border-t border-black/20">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            
-            {/* Left: Image */}
-            <div className="order-1 lg:order-2">
-              <div className="aspect-[3/3] relative overflow-hidden">
-                <Image
-                  src="/Gabriele-Dile-foto.png"
-                  alt="Gabrielė Dilė"
-                  width={800}
-                  height={800}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
 
-            {/* Right: Content */}
-            <div className="order-2 lg:order-1 space-y-12">
-              <div className="space-y-8">
-                <div>
-                  <div className="text-sm tracking-wider uppercase text-gray-500 mb-4">
-                    Gydytoja odontologė
-                  </div>
-                  <h2 className="text-5xl md:text-6xl font-light tracking-wide font-louize-display text-gray-900 mb-6">
-                    Gabrielė Dilė
-                  </h2>
-                </div>
-                
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-6">
-                    <div className="w-12 h-[1px] bg-black/30"></div>
-                    <span className="text-sm tracking-wider uppercase text-gray-600">
-                      10+ metų patirtis
-                    </span>
-                  </div>
-                  
-                  <p className="text-lg leading-relaxed text-gray-700 max-w-md">
-                    Mano pagridinis fokusas - endodontija. Dirbu su pažangiausia įranga, mikroskopu leidžiančiu pasiekti maksimalų tikslumą.
-                    Vadovaujuosi individualizuotu požiuriu į pacientą, siekdama aukščiausios gydymo kokybės, komforto ir ilgalaikių rezultatų. 
-
-
-                  </p>
-                </div>
-                
-                <div className="grid grid-cols-1 gap-4 max-w-md">
-                  <div className="text-md text-gray-600">
-                    • Lietuvos sveikatos mokslų universitetas
-                  </div>
-                  <div className="text-md text-gray-600">
-                    • Lietuvos endodologų draugija
-                  </div>
-                  <div className="text-md text-gray-600">
-                    • Europos sąjungos endodontologų asocijacija
-                  </div>
-                </div>
-              </div>
-            </div>
-            
+{/* Doctor Section - Editorial 1960px Layout (commented out)
+<section id="about-content" className="w-full bg-[#f6f5f3] border-t border-black/10 overflow-hidden">
+  <div className="max-w-[1960px] mx-auto min-h-[800px] flex flex-col lg:flex-row">
+    
+    <div className="w-full lg:w-1/2 flex flex-col justify-center p-12 lg:p-32">
+      <div className="max-w-md space-y-20">
+        <header className="space-y-4">
+          <p className="text-[10px] tracking-[0.4em] uppercase text-gray-400">
+            Gydytoja odontologė
+          </p>
+          <h2 className="text-6xl font-light tracking-tight font-louize-display text-gray-900">
+            Gabrielė Dilė
+          </h2>
+        </header>
+        <div className="space-y-8">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-[1px] bg-black/20" />
+            <span className="text-[11px] tracking-[0.2em] uppercase text-gray-500">10+ Metų patirtis</span>
           </div>
+          <p className="text-[17px] leading-[1.8] text-gray-700 font-light">
+            Mano pagridinis fokusas — endodontija. Dirbu su pažangiausia įranga, 
+            mikroskopu leidžiančiu pasiekti maksimalų tikslumą. 
+            Vadovaujuosi individualizuotu požiuriu į pacientą, siekdama aukščiausios 
+            gydymo kokybės, komforto ir ilgalaikių rezultatų.
+          </p>
         </div>
-      </section>
+        <footer className="space-y-2 opacity-60">
+          {["Lietuvos sveikatos mokslų universitetas", "Lietuvos endodologų draugija", "Europos sąjungos endodontologų asocijacija"].map((edu) => (
+            <p key={edu} className="text-[12px] font-light">• {edu}</p>
+          ))}
+        </footer>
+      </div>
+    </div>
+    <div className="w-full lg:w-1/2 flex items-center justify-center p-12 lg:p-24 relative">
+      <div className="relative w-full max-w-[500px] aspect-[4/5] bg-[#ebeae8] shadow-[20px_20px_60px_-15px_rgba(0,0,0,0.05)] overflow-hidden">
+        <Image
+          src="/Gabriele-Dile-foto.png"
+          alt="Gabrielė Dilė"
+          fill
+          className="object-cover object-center grayscale-[0.2] hover:grayscale-0 transition-all duration-700"
+          sizes="(max-width: 1960px) 500px"
+        />
+      </div>
+      <div className="absolute right-12 bottom-12 hidden xl:block">
+        <p className="rotate-90 origin-bottom-right text-[10px] tracking-[0.5em] uppercase text-gray-300 whitespace-nowrap">
+          Creative Excellence & Care
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+*/}
 
-      {/* Clinic Info */}
-      <section className="py-32 border-t border-black/20">
-        <div className="max-w-7xl mx-auto px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 ">
-            {/* About Clinic */}
-            <div className="border-r border-black/20 p-8 lg:p-12">
-              <h2 className="text-4xl md:text-5xl font-light tracking-wide text-gray-900 mb-8 font-louize-display">
-                Nebeskauda klinika
-              </h2>
-              <div className="space-y-6 mb-8">
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  Mūsų odontologijos klinika įkurta 2008 metais su tikslu teikti 
-                  aukščiausios kokybės dantų gydymo paslaugas. Per daugelį metų 
-                  išsivystėme į modernią kliniką, kurioje derinami tradiciniai 
-                  gydymo metodai su naujausiais technologijų sprendimais.
-                </p>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  Mūsų erdvios ir šiuolaikiškai įrengtos procedūrų kabinetos 
-                  sukurti pacientų komfortui ir saugumui. Naudojame tik patikimas 
-                  ir sertifikuotas medžiagas, o visa įranga reguliariai 
-                  atnaujinama ir kalibruojama.
-                </p>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-gray-700">Šiuolaikinė įranga ir technologijos</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-gray-700">Sterilizacijos standartų laikymasis</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-gray-700">Jauki ir rami aplinka</span>
-                </div>
-                <div className="flex items-start space-x-3">
-                  <CheckCircle className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-gray-700">Nemokama konsultacija ir diagnostika</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Info & Mission */}
-            <div className=" flex flex-col">
-              {/* Contact Info */}
-              <div className="p-8 lg:p-12 border-b border-black/20">
-                <h3 className="text-lg font-medium text-gray-900 mb-8 tracking-wide">
-                  KONTAKTINĖ INFORMACIJA
-                </h3>
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4">
-                    <MapPin className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900 mb-1">Adresas</p>
-                      <p className="text-sm text-gray-600">Vilniaus g. 123, Vilnius</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <Phone className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900 mb-1">Telefonas</p>
-                      <p className="text-sm text-gray-600">+370 123 45678</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <Mail className="h-5 w-5 text-black mt-0.5 flex-shrink-0" />
-                    <div>
-                      <p className="text-sm font-medium text-gray-900 mb-1">El. paštas</p>
-                      <p className="text-sm text-gray-600">info@odontologija.lt</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Mission */}
-              <div className="p-8 lg:p-12">
-                <h3 className="text-lg font-medium text-gray-900 mb-6 tracking-wide">
-                  MŪSŲ MISIJA
-                </h3>
-                <p className="text-sm text-gray-700 leading-relaxed">
-                  Suteikti kiekvienam pacientui galimybę džiaugtis sveikais ir 
-                  gražiais dantimis, naudojant šiuolaikiškas technologijas ir 
-                  individualų požiūrį į kiekvieną atvejį.
-                </p>
-              </div>
-            </div>
+      {/* Doctor Section - Studio Boum Mirror Layout */}
+<section id="about-content" className="w-full border-t border-black/10 overflow-hidden">
+  <div className="max-w-[1960px] mx-auto flex flex-col lg:flex-row min-h-[800px]">
+    
+    {/* Left Column: The Narrative (33.3% width) */}
+    <div className="w-full lg:w-1/3 flex items-center justify-center p-8 lg:p-24 order-2 lg:order-1">
+      <div className="max-w-sm space-y-12">
+      <div className="flex items-center gap-4">
+            <div className="w-12 h-[1px] bg-black/20" />
+            <span className="text-[14px] uppercase text-gray-700">10+ Metų patirtis</span>
           </div>
+        {/* Paragraph 1 */}
+        <p className="text-[16px] leading-relaxed text-gray-800 font-light">
+          Mano pagridinis fokusas — <span className="italic">endodontija</span>. Dirbu su pažangiausia įranga, 
+          mikroskopu leidžiančiu pasiekti maksimalų tikslumą. 
+          Vadovaujuosi individualizuotu požiuriu į pacientą, siekdama aukščiausios 
+          gydymo kokybės, komforto ir ilgalaikių rezultatų.
+        </p>
+
+        {/* Credentials List */}
+        <div className="space-y-2 pt-4 border-t border-black/20">
+          {[
+            "Lietuvos sveikatos mokslų universitetas", 
+            "Lietuvos endodologų draugija", 
+            "Europos sąjungos endodontologų asocijacija"
+          ].map((item) => (
+            <p key={item} className="text-[14px] uppercase text-gray-900 font-light">
+              • {item}
+            </p>
+          ))}
         </div>
-      </section>
+      </div>
+    </div>
+
+    {/* Center Column: The Display Name (33.3% width) */}
+    <div className="w-full lg:w-1/3 flex flex-col items-center justify-center p-12 lg:p-0 order-1 lg:order-2">
+      <span className="text-[14px] uppercase text-gray-800 mb-6">
+        Gydytoja Odontologė
+      </span>
+      
+      <h2 className="text-6xl md:text-7xl font-light tracking-tighter font-louize-display text-gray-900 leading-none text-center">
+        Gabrielė Dilė
+      </h2>
+      
+    </div>
+
+    {/* Right Column: The Image (33.3% width) */}
+    <div className="w-full lg:w-1/3 relative min-h-[500px] lg:min-h-full order-3">
+      <Image
+        src="/Gabriele-Dile-foto.png"
+        alt="Gabrielė Dilė"
+        fill
+        priority
+        className="object-cover object-center grayscale-[0.1]"
+      />
+    </div>
+    
+  </div>
+</section>
+
+      {/* Clinic Info - Exact Studio Boum Layout */}
+<section className="w-full border-t border-black/10 overflow-hidden">
+  <div className="max-w-[1960px] mx-auto flex flex-col lg:flex-row min-h-[800px]">
+    
+    {/* Left Column: The Image (33.3% width) */}
+    <div className="w-full lg:w-1/3 relative min-h-[400px] lg:min-h-full border-r border-black/5">
+      <Image
+        src="/klinika.jpg"
+        alt="Nebeskauda klinika interior"
+        fill
+        className="object-cover grayscale-[0.1]"
+      />
+    </div>
+
+    {/* Center Column: The Large Branding (33.3% width) */}
+    <div className="w-full lg:w-1/3 flex items-center justify-center p-12 lg:p-0">
+      <h2 className="text-6xl md:text-7xl font-light tracking-tighter font-louize-display text-gray-900 leading-none text-center">
+        Nebeskauda <br /> klinika
+      </h2>
+    </div>
+
+    {/* Right Column: The Narrative (33.3% width) */}
+    <div className="w-full lg:w-1/3 flex items-center justify-center p-8 lg:p-24">
+      <div className="max-w-sm space-y-12">
+        {/* Paragraph 1 */}
+        <p className="text-[16px] leading-relaxed text-gray-800 font-light">
+          Mūsų odontologijos klinika įkurta 2025 metais su tikslu teikti 
+          aukščiausios kokybės dantų gydymo paslaugas.
+        </p>
+
+        {/* Paragraph 2 */}
+        <p className="text-[16px] leading-relaxed text-gray-800 font-light">
+          Mūsų erdvūs ir šiuolaikiškai įrengti procedūrų kabinetai 
+          sukurti pacientų komfortui ir saugumui. Naudojame tik patikimas 
+          ir sertifikuotas medžiagas, o visa įranga reguliariai 
+          atnaujinama ir kalibruojama.
+        </p>
+
+        {/* Paragraph 3 - Mission style */}
+        <p className="text-[16px] leading-relaxed text-gray-800 font-light">
+          Suteikti kiekvienam pacientui galimybę džiaugtis sveikais ir 
+          gražiais dantimis, naudojant šiuolaikiškas technologijas ir 
+          individualų požiūrį į kiekvieną atvejį.
+        </p>
+      </div>
+    </div>
+    
+  </div>
+</section>
 
       <Footer />
     </div>

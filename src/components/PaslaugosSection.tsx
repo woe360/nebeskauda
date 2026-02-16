@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Service {
   id: string
@@ -213,80 +214,70 @@ export default function PaslaugosSection() {
 // Illustration Components
 function ConsultationIllustration() {
   return (
-    <svg width="120" height="120" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
-      <rect x="60" y="80" width="80" height="60" rx="4" />
-      <path d="M70 95h60 M70 105h60 M70 115h40" />
-      <circle cx="100" cy="50" r="25" />
-      <path d="M90 50l5 5 10-10" strokeWidth="2" />
-      <path d="M50 140l20 20 M150 140l-20 20" strokeDasharray="2,2" />
-      <circle cx="40" cy="160" r="3" fill="currentColor" />
-      <circle cx="160" cy="160" r="3" fill="currentColor" />
-    </svg>
+    <span className="relative w-[150px] h-[150px] block">
+      <Image
+        src="/konsultacija-zmogus.png"
+        alt=""
+        width={150}
+        height={150}
+        className="object-contain w-full h-full"
+      />
+    </span>
   )
 }
 
 function EndodonticsIllustration() {
   return (
-    <svg width="120" height="120" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
-      <path d="M100 40c-20 0-35 15-35 35 0 15 8 25 8 40 0 20 12 35 27 35s27-15 27-35c0-15 8-25 8-40 0-20-15-35-35-35z" />
-      <path d="M100 60v20" strokeWidth="2" />
-      <path d="M100 100v30" strokeWidth="2" />
-      <path d="M85 80v25" />
-      <path d="M115 80v25" />
-      <circle cx="100" cy="100" r="8" strokeDasharray="2,2" />
-      <path d="M92 92l16 16 M108 92l-16 16" strokeWidth="1.5" />
-      <path d="M70 60c-5-5-10-8-15-10" strokeDasharray="2,2" />
-      <path d="M130 60c5-5 10-8 15-10" strokeDasharray="2,2" />
-    </svg>
+    <span className="relative w-[150px] h-[150px] block">
+      <Image
+        src="/dantis.png"
+        alt=""
+        width={150}
+        height={150}
+        className="object-contain w-full h-full"
+      />
+    </span>
   )
 }
 
 function ToothTreatmentIllustration() {
   return (
-    <svg width="120" height="120" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
-      <path d="M100 40c-20 0-35 15-35 35 0 15 8 25 8 40 0 20 12 35 27 35s27-15 27-35c0-15 8-25 8-40 0-20-15-35-35-35z" />
-      <path d="M85 80v25" />
-      <path d="M115 80v25" />
-      <path d="M75 60l50 0" />
-      <path d="M80 130l40 0" />
-      <circle cx="70" cy="100" r="15" strokeDasharray="2,2" />
-      <path d="M60 95l8 0 M60 105l8 0" />
-    </svg>
+    <span className="relative w-[180px] h-[180px] block">
+      <Image
+        src="/terapinis.png"
+        alt=""
+        width={180}
+        height={180}
+        className="object-contain w-full h-full"
+      />
+    </span>
   )
 }
 
 function HygieneIllustration() {
   return (
-    <svg width="120" height="120" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
-      <rect x="40" y="80" width="120" height="40" rx="20" />
-      <path d="M60 100l100 0" />
-      <path d="M70 90l10 0 M70 110l10 0" />
-      <path d="M90 90l10 0 M90 110l10 0" />
-      <path d="M110 90l10 0 M110 110l10 0" />
-      <path d="M130 90l10 0 M130 110l10 0" />
-      <circle cx="50" cy="100" r="8" />
-      <circle cx="150" cy="100" r="8" />
-      <path d="M30 60c10-10 25-15 40-10" strokeDasharray="3,3" />
-      <path d="M170 60c-10-10-25-15-40-10" strokeDasharray="3,3" />
-      <path d="M100 140l0 20" />
-      <path d="M95 155l10 0" />
-    </svg>
+    <span className="relative w-[180px] h-[180px] block">
+      <Image
+        src="/higiena.png"
+        alt=""
+        width={180}
+        height={180}
+        className="object-contain w-full h-full"
+      />
+    </span>
   )
 }
 
 function ProsthetsIllustration() {
   return (
-    <svg width="120" height="120" viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-700">
-      <path d="M60 80h80v40c0 10-8 18-18 18H78c-10 0-18-8-18-18V80z" />
-      <path d="M70 80v-20c0-5 4-9 9-9h42c5 0 9 4 9 9v20" />
-      <rect x="75" y="85" width="10" height="15" rx="2" />
-      <rect x="95" y="85" width="10" height="15" rx="2" />
-      <rect x="115" y="85" width="10" height="15" rx="2" />
-      <path d="M85 100l30 0" strokeWidth="2" />
-      <path d="M80 110l40 0" strokeWidth="2" />
-      <circle cx="45" cy="120" r="2" fill="currentColor" />
-      <circle cx="155" cy="120" r="2" fill="currentColor" />
-      <path d="M45 125l5 0 M155 125l5 0" strokeWidth="1" />
-    </svg>
+    <span className="relative w-[180px] h-[180px] block">
+      <Image
+        src="/protezavimas.png"
+        alt=""
+        width={180}
+        height={180}
+        className="object-contain w-full h-full"
+      />
+    </span>
   )
 }

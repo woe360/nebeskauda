@@ -43,7 +43,21 @@ module.exports = {
         '88': '22rem',
         '107': '26.75rem',
         '128': '32rem',
-      }
+      },
+      keyframes: {
+        'slide-in-next': {
+          '0%': { transform: 'translateX(1.5rem)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+        'slide-in-prev': {
+          '0%': { transform: 'translateX(-1.5rem)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+      },
+      animation: {
+        'slide-in-next': 'slide-in-next 0.4s ease-out forwards',
+        'slide-in-prev': 'slide-in-prev 0.4s ease-out forwards',
+      },
     },
   },
   plugins: [],
