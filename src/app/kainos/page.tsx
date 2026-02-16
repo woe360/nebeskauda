@@ -135,7 +135,7 @@ export default function PricingPage() {
                 element.scrollIntoView({ behavior: 'smooth' })
               }
             }}
-            className="px-6 py-3 border-2 border-black text-black text-sm font-medium tracking-wide uppercase 
+            className="px-6 py-3 border-1 border-black text-black text-sm font-normal tracking-wide uppercase 
                      hover:bg-black rounded-full hover:text-white transition-all duration-300 
                      focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2 w-fit order-1 md:order-2 shrink-0"
           >
@@ -144,16 +144,16 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Pricing Sections - Full width */}
+      {/* Pricing Sections - full width on mobile, right-aligned on desktop */}
       <section id="services-grid" className="pt-16">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-black/20">
+        <div className="w-full max-w-7xl mx-auto lg:ml-auto lg:mr-0 px-4 sm:px-6 lg:px-8 border-t border-black/20">
           {pricingSections.map((section, index) => (
             <div key={index} className="border-b border-black/20">
               <button
                 onClick={() => toggleSection(section.title)}
                 className="w-full flex items-center justify-between px-4 sm:px-6 lg:px-8 py-6 text-left focus:outline-none hover:bg-white/20 transition-colors"
               >
-                <h3 className="text-lg sm:text-xl font-medium tracking-wide uppercase pr-4">
+                <h3 className="text-lg sm:text-xl font-normal tracking-wide uppercase pr-4">
                   {section.title}
                 </h3>
                 <div className={`transition-transform duration-500 flex-shrink-0 ${openSections.includes(section.title) ? 'rotate-180' : ''}`}>
