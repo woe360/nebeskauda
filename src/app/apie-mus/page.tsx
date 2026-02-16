@@ -98,13 +98,15 @@ export default function AboutPage() {
 </section>
 */}
 
+ {/* <GabrieleSection /> */}
+
       {/* Doctor Section - Studio Boum Mirror Layout */}
 <section id="about-content" className="w-full border-t border-black/10 overflow-hidden">
   <div className="max-w-[1960px] mx-auto flex flex-col lg:flex-row min-h-[800px]">
     
     {/* Left Column: The Narrative (33.3% width) */}
-    <div className="w-full lg:w-1/3 flex items-center justify-center p-8 lg:p-24 order-2 lg:order-1">
-      <div className="max-w-sm space-y-12">
+    <div className="w-full lg:w-1/3 flex items-center justify-center p-8 lg:p-10 order-2 lg:order-1">
+      <div className="max-w-2xl space-y-12">
       <div className="flex items-center gap-4">
             <div className="w-12 h-[1px] bg-black/20" />
             <span className="text-[14px] uppercase text-gray-700">10+ Metų patirtis</span>
@@ -145,14 +147,16 @@ export default function AboutPage() {
     </div>
 
     {/* Right Column: The Image (33.3% width) */}
-    <div className="w-full lg:w-1/3 relative min-h-[500px] lg:min-h-full order-3">
-      <Image
-        src="/Gabriele-Dile-foto.png"
-        alt="Gabrielė Dilė"
-        fill
-        priority
-        className="object-cover object-center grayscale-[0.1]"
-      />
+    <div className="w-full lg:w-1/3 flex items-center justify-center min-h-[500px] lg:min-h-full order-3 p-8 lg:p-12">
+      <div className="relative w-full max-w-[180px] sm:max-w-[200px] lg:max-w-[640px] aspect-[3/4]">
+        <Image
+          src="/Gabriele-Dile-foto.png"
+          alt="Gabrielė Dilė"
+          fill
+          priority
+          className="object-cover object-center grayscale-[0.1]"
+        />
+      </div>
     </div>
     
   </div>
@@ -180,8 +184,8 @@ export default function AboutPage() {
     </div>
 
     {/* Right Column: The Narrative (33.3% width) */}
-    <div className="w-full lg:w-1/3 flex items-center justify-center p-8 lg:p-24">
-      <div className="max-w-sm space-y-12">
+    <div className="w-full lg:w-1/3 flex items-center justify-center p-8 lg:p-10">
+      <div className="max-w-xl space-y-12">
         {/* Paragraph 1 */}
         <p className="text-[16px] leading-relaxed text-gray-800 font-light">
           Mūsų odontologijos klinika įkurta 2025 metais su tikslu teikti 
